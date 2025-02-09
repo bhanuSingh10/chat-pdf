@@ -39,6 +39,7 @@
     "next": "^15.1.6",
     "node-fetch": "^3.3.2",
     "openai-edge": "^1.2.2",
+    "pdf-lib": "^1.17.1",
     "pdf-parse": "^1.1.1",
     "pdfjs-dist": "^4.10.38",
     "pg": "^8.13.1",

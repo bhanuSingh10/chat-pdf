@@ -32,7 +32,7 @@ export default async function Home() {
 
           <div className="w-full mt-4">
             {isAuth ? (
-              <FileUpload/>
+              <FileUpload />
             ) : (
               <Link href="/sign-in">
                 <Button>

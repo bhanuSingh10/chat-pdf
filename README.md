@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Real-Time Chat Application with PDF Analysis
 
-## Getting Started
+A comprehensive real-time chat application built using Next.js, Pinecone, Supabase, Neon DB, Python, and TypeScript. This application allows users to upload PDFs, chat with an AI assistant that uses the PDF content, and get answers to their queries.
 
-First, run the development server:
+## Tech Stack
+ 
+- **Frontend**: 
+  - React.js (using TypeScript)
+  - TailwindCSS for styling
+  - Next.js for server-side rendering and API routes
+  - React Query for data fetching and state management
+  - Lucide icons
+  - shadcn/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Backend**:
+  - **Neon DB**: Cloud-native database for storing user data, messages, and chat sessions
+  - **Supabase**: Authenticates users and manages real-time data
+  - **Pinecone**: Vector database to store and query embeddings for the uploaded PDF content
+  - **Python**: generate_embeddings for PDF extraction and embeddings processing
+  - Drizzle ORM
+  - **Gemini API**
+  - **Pinecone API**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Real-Time Chat**: Users can send and receive messages in real-time.
+- **PDF Analysis**: Extracts content from uploaded PDFs and queries relevant information based on user input.
+- **AI Integration**: Leverages Gemini API to provide answers to user queries.
+- **Database Integration**: Stores chat messages and user data in Neon DB.
 
-## Learn More
+ 
+#### Screenshot:
+![Login Screenshot](./screenshots/login.png)
+![Sign-In Screenshot](./screenshots/signin.png)
 
-To learn more about Next.js, take a look at the following resources:
+### 2. **Upload PDF**
+Users can upload PDFs to the system, and the AI can interact with the content of the uploaded PDFs.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Screenshot:
+![Upload PDF Screenshot](./screenshots/uploadpdf.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. **Chat with PDF Content**
+Once a PDF is uploaded, users can chat with an AI-powered assistant that extracts information from the PDF content.
 
-## Deploy on Vercel
+#### Screenshot:
+![Chat Page with PDF Screenshot](./screenshots/chatpage.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Prerequisites
+
+- Node.js
+- TypeScript
+- Supabase Account (for database and storage)
+- Pinecone Account (for vector database)
+- Gemini API Key (for AI-powered chat)
+
+
+## Check .env.example for the required environment variables and ensure they are set up in your .env file.
+

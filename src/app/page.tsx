@@ -23,7 +23,7 @@ export default async function Home() {
           </div>
 
           <div className="flex mt-2">
-            {isAuth && <Button>go to Chats</Button>}
+            {isAuth && <Link  href="/chat/1"><Button>go to Chats</Button></Link> }
           </div>
           <p className="max-w-xl mt-1 text-lg text-slate-600">
             Join millions of students, researchers, and professionals to

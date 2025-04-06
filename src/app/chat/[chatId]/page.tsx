@@ -1,3 +1,4 @@
+
 import React from "react";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -8,22 +9,24 @@ import ChatSideBar from "@/components/ChatSideBar";
 import PDFViewer from "@/components/PDFViewer";
 import ChatComponent from "@/components/ChatComponent";
 
+// ❗️ Correct the type to be Promise-based
 type Props = {
-  params: {
+  params: Promise<{
     chatId: string;
-  };
+  }>;
 };
 
 const ChatPage = async ({ params }: Props) => {
   try {
+    const { chatId } = await params; // ✅ Await params
     const { userId } = await auth();
+
     if (!userId) {
       return redirect("/sign-in");
     }
 
-    // ✅ Convert `chatId` to a number safely
-    const chatId = Number(params.chatId);
-    if (isNaN(chatId)) {
+    const chatIdNumber = Number(chatId);
+    if (isNaN(chatIdNumber)) {
       return redirect("/");
     }
 
@@ -32,12 +35,13 @@ const ChatPage = async ({ params }: Props) => {
       .select()
       .from(chats)
       .where(eq(chats.userId, userId));
+
     if (!_chats || _chats.length === 0) {
       return redirect("/");
     }
 
     // ✅ Check if user has access to this chat
-    const currentChat = _chats.find((chat) => chat.id === chatId);
+    const currentChat = _chats.find((chat) => chat.id === chatIdNumber);
     if (!currentChat) {
       return redirect("/");
     }
@@ -47,7 +51,7 @@ const ChatPage = async ({ params }: Props) => {
         <div className="flex w-full max-h-screen overflow-auto">
           {/* Sidebar */}
           <div className="flex-[1] max-w-xs">
-            <ChatSideBar chats={_chats} chatId={chatId} />
+            <ChatSideBar chats={_chats} chatId={chatIdNumber} />
           </div>
 
           {/* PDF Viewer */}
@@ -56,8 +60,8 @@ const ChatPage = async ({ params }: Props) => {
           </div>
 
           {/* Chat Component */}
-          <div className="flex-[3] border-l-4   border-l-slate-200">
-            <ChatComponent chatId={chatId} />
+          <div className="flex-[3] border-l-4 border-l-slate-200">
+            <ChatComponent chatId={chatIdNumber} />
           </div>
         </div>
       </div>
@@ -69,3 +73,5 @@ const ChatPage = async ({ params }: Props) => {
 };
 
 export default ChatPage;
+
+

@@ -48,6 +48,13 @@ const FileUpload = () => {
         }
         mutate(data, {
           onSuccess: ({ chat_id }) => {
+            if (!chat_id) {
+              toast.error("Something went wrong. Chat ID missing.");
+              return;
+            }
+          
+            toast.success("Chat created!");
+            
             toast.success("Chat created!");
             router.push(`chat/${chat_id}`);
             // toast.success(data.message);
